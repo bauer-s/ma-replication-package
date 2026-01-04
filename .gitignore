@@ -5,6 +5,9 @@
 variants/*
 !variants/README.md
 
+# Files too large to be stored in Git
+surrogate-model-backend.tar
+
 # All files generated during experiments
 *.joblib
 *.pickle
