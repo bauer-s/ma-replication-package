@@ -16,8 +16,8 @@ set -euo pipefail
 # Paths
 readonly CONDA_BASE="/scratch/$USER/miniconda3"
 readonly CONDA_ENV="ggnn-env"
-readonly SCRIPT_PATH="/scratch/$USER/model_training/training.py"
-readonly REQS_FILE="/scratch/$USER/model_training/requirements.txt"
+readonly SCRIPT_PATH="/scratch/$USER/replication_package/model_training/fitness/training.py"
+readonly REQS_FILE="/scratch/$USER/replication_package/environment/requirements.txt"
 
 export PIP_CACHE_DIR="/scratch/$USER/pip-cache"
 
