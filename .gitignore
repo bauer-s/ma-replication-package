@@ -12,6 +12,7 @@ surrogate-model-backend.tar
 *.joblib
 *.pickle
 nohup.out
+slurm-*.out
 
 # Large checkpoint files
 *.pt
