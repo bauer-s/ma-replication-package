@@ -1,0 +1,11 @@
+.DS_Store
+
+
+# Variants folder
+variants/*
+!variants/README.md
+
+# All files generated during experiments
+*.joblib
+*.pickle
+nohup.out
