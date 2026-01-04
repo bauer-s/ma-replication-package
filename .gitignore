@@ -9,3 +9,8 @@ variants/*
 *.joblib
 *.pickle
 nohup.out
+
+# Large checkpoint files
+*.pt
+environment/programEmbeddingConfig/*
+!environment/programEmbeddingConfig/README.md
