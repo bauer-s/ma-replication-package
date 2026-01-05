@@ -1,0 +1,99 @@
+{
+    "repair": true,
+    "logs": {
+        "reduceSpam": false,
+        "changeLog": false
+    },
+    "algorithm": {
+        "kind": "genProg",
+        "populationSize": 48,
+        "operatorOrder": "crossover then mutation",
+        "elitismSize": 2
+    },
+    "fitnessFunction": {
+        "kind": "surrogateModelFitness",
+        "timeout": 300000,
+        "probabilityPrediction": 0.0,
+        "apiPath": "http://thor1.fim.uni-passau.de:5001/api/fitness/predict",
+        "trainCounterMax": 0
+    },
+    "stoppingCondition": {
+        "kind": "combined",
+        "conditions": [
+            {
+                "kind": "optimal"
+            },
+            {
+                "kind": "fixedTime",
+                "duration": 12000000
+            },
+            {
+                "kind": "fitnessImprovement",
+                "iterationsWithoutImprovement": 100
+            }
+        ]
+    },
+    "initialVariants": {
+        "chromosome": {
+            "kind": "repair"
+        },
+        "generator": {
+            "kind": "mutating"
+        }
+    },
+    "mutation": {
+        "kind": "esMutation",
+        "operators": [
+            "deleteStatement",
+            "deleteExpression",
+            "switchDropDownValue",
+            "duplicateStatement",
+            "moveExpression",
+            "moveStatement",
+            "swapStatements",
+            "swapExpressions",
+            "replaceStatement",
+            "replaceExpression",
+            "unwrapStack",
+            "wrapStack"
+        ],
+        "probability": {
+            "insertion": 0.3333333333333333,
+            "deletion": 0.3333333333333333,
+            "change": 0.3333333333333333
+        }
+    },
+    "fixSources": [
+        {
+            "kind": "init"
+        },
+        {
+            "kind": "path",
+            "name": "solution",
+            "removeInitialVariant": false,
+            "path": "solution"
+        }
+    ],
+    "crossover": {
+        "kind": "repair",
+        "operators": [
+            "exchangeRandomScriptsBetweenTargetsWithSimilarName"
+        ],
+        "probability": 0.7,
+        "headlessChicken": false
+    },
+    "selection": {
+        "kind": "rank"
+    },
+    "faultLocalization": {
+        "metric": "dstar2",
+        "coverageLevel": "block",
+        "checkingLevel": "assertionCumulative"
+    },
+    "subsumeNegativeTestResults": true,
+    "assertionTransformation": false,
+    "whiskers": {
+        "ttl": false,
+        "keepaliveTimeout": 5000
+    }
+}

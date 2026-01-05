@@ -19,3 +19,12 @@ TODO: Describe folders with their orders
 
 
 > df in model_training wird erzeugt -> Testen des trainings
+
+
+## Further
+
+### Activate conda environment
+
+```sh
+source /scratch/bauers/miniconda3/bin/activate ggnn-env
+```
