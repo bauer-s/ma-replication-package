@@ -13,6 +13,7 @@ surrogate-model-backend.tar
 *.pickle
 nohup.out
 slurm-*.out
+.nfs*
 
 # Large checkpoint files
 *.pt
