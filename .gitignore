@@ -9,10 +9,14 @@ variants/*
 surrogate-model-backend.tar
 
 # All files generated during experiments
+training_summary.txt
+grid_search_results.csv
+
+
 *.joblib
 *.pickle
-nohup.out
-slurm-*.out
+*.out
+*.err
 .nfs*
 
 # Large checkpoint files
