@@ -9,7 +9,7 @@ variants/*
 surrogate-model-backend.tar
 
 # All files generated during experiments
-training_summary.txt
+*_summary.txt
 grid_search_results.csv
 
 

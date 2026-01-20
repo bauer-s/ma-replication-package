@@ -6,7 +6,7 @@ import joblib
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, hamming_loss, f1_score
 
 
 def get_x_y_from_df(df_name: str):
@@ -36,8 +36,8 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-y_train = y_train.astype(dtype=int)
-y_test = y_test.astype(dtype=int)
+y_train = y_train.astype(dtype=int).values
+y_test = y_test.astype(dtype=int).values
 
 print("Shapes: X_train", X_train.shape, "X_test", X_test.shape)
 print("Shapes: y_train", y_train.shape, "y_test", y_test.shape)
@@ -61,6 +61,7 @@ clf = GridSearchCV(
     estimator=base_model,
     param_grid=param_grid,
     cv=3,
+    scoring='f1_micro',
     refit=True,
     verbose=2,
     n_jobs=4,
@@ -76,7 +77,7 @@ print('Saved all grid search results to grid_search_results.csv')
 
 # Best parameter set
 print('Best parameters found:\n', clf.best_params_)
-print(f"Best CV score: {clf.best_score_:.4f}")
+print(f"Best CV score (F1 micro): {clf.best_score_:.4f}")
 
 # Save artifacts for reuse
 artifacts = {
@@ -97,13 +98,40 @@ for mean, std, params in zip(means, stds, clf.cv_results_['params']):
 print()
 
 y_true, y_pred = y_test, clf.predict(X_test)
-test_acc = accuracy_score(y_true, y_pred)
-print('Results on the test set (accuracy):', test_acc)
+
+# Calculate multiple metrics for evaluation
+exact_match_acc = accuracy_score(y_true, y_pred)
+hamming = hamming_loss(y_true, y_pred)
+per_label_acc = 1 - hamming
+f1_micro = f1_score(y_true, y_pred, average='micro', zero_division=0)
+f1_macro = f1_score(y_true, y_pred, average='macro', zero_division=0)
+
+print('='*80)
+print('RESULTS ON TEST SET:')
+print('='*80)
+print(f'Exact Match Accuracy:  {exact_match_acc:.4f} ({exact_match_acc*100:.2f}%)')
+print(f'Hamming Loss:          {hamming:.4f}')
+print(f'Per-Label Accuracy:    {per_label_acc:.4f} ({per_label_acc*100:.2f}%)')
+print(f'F1 Score (micro):      {f1_micro:.4f}')
+print(f'F1 Score (macro):      {f1_macro:.4f}')
+print('='*80)
+
+# Calculate per-test accuracies
+per_test_accuracies = []
+for i in range(y_true.shape[1]):
+    test_acc = accuracy_score(y_true[:, i], y_pred[:, i])
+    per_test_accuracies.append(test_acc)
+
+print(f'\nPer-Test Accuracy Statistics:')
+print(f'  Mean: {np.mean(per_test_accuracies):.4f} ({np.mean(per_test_accuracies)*100:.2f}%)')
+print(f'  Min:  {np.min(per_test_accuracies):.4f} ({np.min(per_test_accuracies)*100:.2f}%)')
+print(f'  Max:  {np.max(per_test_accuracies):.4f} ({np.max(per_test_accuracies)*100:.2f}%)')
+print(f'  Std:  {np.std(per_test_accuracies):.4f}')
 
 with open('classification_training_summary.txt', 'a', encoding='utf-8') as fh:
-    fh.write(
-        f"Run summary: test_acc={test_acc:.4f} best_cv={clf.best_score_:.4f} params={clf.best_params_}\n"
-    )
+    fh.write(f"Run summary: exact_match={exact_match_acc:.4f} per_label_acc={per_label_acc:.4f} "
+             f"hamming_loss={hamming:.4f} f1_micro={f1_micro:.4f} f1_macro={f1_macro:.4f} "
+             f"best_cv_f1_micro={clf.best_score_:.4f} params={clf.best_params_}\n")
 print('Appended run summary to classification_training_summary.txt')
 
 print()
