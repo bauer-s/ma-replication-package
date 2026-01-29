@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 #SBATCH --job-name=embedded-kittens
-#SBATCH --nodelist=thor2
-###SBATCH --qos=verylong,lopri
-#SBATCH --time=2-00:00:00
+#SBATCH --nodelist=skadi
+#SBATCH --qos=verylong
+#SBATCH --time=4-00:00:00
 #SBATCH --mem=8GB
 #SBATCH --cpus-per-task=2
 #SBATCH --ntasks=1

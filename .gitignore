@@ -5,19 +5,22 @@
 variants/*
 !variants/README.md
 
-# Files too large to be stored in Git
-surrogate-model-backend.tar
-
 # All files generated during experiments
 *_summary.txt
 grid_search_results.csv
 
-
+*.log
 *.joblib
 *.pickle
 *.out
 *.err
 .nfs*
+
+# Old folders
+*_old/
+
+# Files too large to be stored in Git
+surrogate-model-backend.tar
 
 # Large checkpoint files
 *.pt

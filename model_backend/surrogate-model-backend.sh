@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 #SBATCH --job-name=surrogate-model-backend
-#SBATCH --nodelist=thor1
-###SBATCH --qos=verylong,lopri
-#SBATCH --time=2-00:00:00 
+#SBATCH --nodelist=skadi
+#SBATCH --qos=verylong
+#SBATCH --time=4-00:00:00
 #SBATCH --mem=32GB
 #SBATCH --cpus-per-task=2
 #SBATCH --ntasks=1
@@ -33,5 +33,7 @@ fi
 # Load image from .tar file
 infosun_docker load -i ./surrogate-model-backend.tar
 # Start container from image
-infosun_docker run --rm --memory=200g --env-file settings.env -p 5001:5001 -v /scratch/$USER/bauers-ma/surrogate-model-backend:/var/log/ --network surrogate-model-net surrogate-model-backend
+infosun_docker run --rm --memory=200g --env-file settings.env -p 5001:5001 -v /scratch/$USER/replication_package/model_backend/log/:/var/log/ --network surrogate-model-net surrogate-model-backend
+
+
 
