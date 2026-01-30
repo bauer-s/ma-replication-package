@@ -1,13 +1,15 @@
 import os
+from pathlib import Path
+
 import pandas as pd
 
-dir_dfs = "games/fruit_catching/"
-# TODO: Change dir_in to variants
-dir_in = f"../variants/"
-dir_in = f"/scratch/bauers/variants/"
+dir_dfs = Path(__file__).resolve().parent / "games" / "fruit_catching"
+
+# Use the repository-local variants directory instead of a cluster-specific path
+dir_in = Path(__file__).resolve().parents[1] / "variants"
 
 # Output combined dataframe
-df_out_name = "../model_training/df.pickle"
+df_out_name = Path(__file__).resolve().parents[1] / "model_training" / "df.pickle"
 
 
 dfs = []
@@ -21,7 +23,7 @@ with os.scandir(dir_dfs) as it:
             df = pd.read_pickle(entry.path)
 
             folder_name = entry.name.removesuffix(".pickle").removeprefix("df_")
-            len_files = len(os.listdir(os.path.join(dir_in, folder_name)))
+            len_files = len(os.listdir(dir_in / folder_name))
             len_df = df.shape[0]
 
 

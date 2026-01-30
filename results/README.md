@@ -8,16 +8,17 @@ This folder contains the notebooks used to (re-)generate the tables/figures that
 
 ## Quick start (recommended run order)
 
-1) Ensure the raw experiment logs are present under `temp/results/`:
-   - `temp/results/baseline/`
-   - `temp/results/surrogate-model/`
+1) Ensure the raw experiment logs are present under `temp_results/`:
+   - `temp_results/baseline/`
+   - `temp_results/surrogate-model/`
 
 2) Generate aggregated CSV inputs:
-   - Run `create_result_raw_data.ipynb`
+   - Run the raw-data creation notebook:
+      - `03_create_raw_data.ipynb`
    - Outputs: `raw_data/*.csv`
 
 3) Generate the repair-analysis thesis assets:
-   - Run `analyze_repair_results_thesis_assets.ipynb`
+   - Run `04_analyze_repair_results_thesis_assets.ipynb`
    - Outputs (in `data/`):
      - `latex_table_time_efficiency.tex`
      - `latex_table_statistical_tests.tex`
@@ -25,29 +26,16 @@ This folder contains the notebooks used to (re-)generate the tables/figures that
      - `figure_stopping_conditions.pdf/png`
      - `figure_generations_completed.pdf/png`
 
-4) (Optional) Generate the hyperparameter top-10 tables:
-   - Run `create_hyperparameter_tables.ipynb`
-   - Inputs required (not produced by step 2):
-     - `fitness_new/grid_search_results.csv`
-     - `testoutcome_new/grid_search_results.csv`
-   - Outputs (in `data/`):
-     - `fitness_top10_hyperparameters.tex` (+ `.csv`)
-     - `testoutcome_top10_hyperparameters.tex` (+ `.csv`)
+4) (Optional) Extended analysis / exploration:
+    - Use `01_analyze_training_data.ipynb` for additional plots and statistics based on the model-training results.
 
-5) (Optional) Extended repair analysis:
-   - Run `create_repair_results.ipynb`
-   - Produces the same core repair-analysis artifacts as step 3, but is kept as a more exploratory/extended notebook.
+5) (Optional) Generate the hyperparameter top-10 tables:
+    - Run `02_create_hyperparameter_tables.ipynb`
+    - Inputs required (produced by the model training step, not by step 2):
+       - `../model_training/fitness/grid_search_results.csv`
+       - `../model_training/testoutcome/grid_search_results.csv`
+    - Outputs (in `data/`):
+       - `fitness_top10_hyperparameters.tex` (+ `.csv`)
+       - `testoutcome_top10_hyperparameters.tex` (+ `.csv`)
 
-## Exporting into the thesis folders
 
-All notebooks in this folder write into `data/` by default.
-
-If you want the notebooks to also copy outputs into the thesis folders for convenience:
-- Set `EXPORT_TO_THESIS = True` in the respective notebook.
-- Tables are copied to `tables/`, figures to `diagram/`.
-
-## Notes
-
-- The thesis itself references assets from `tables/` and `diagram/`.
-- `data/` is meant to be byte-identical to those referenced assets (for the replication package).
-- PlantUML workflow diagrams are handled separately; see `diagram/README.md`.

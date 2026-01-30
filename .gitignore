@@ -28,4 +28,5 @@ surrogate-model-backend.tar
 environment/programEmbeddingConfig/*
 !environment/programEmbeddingConfig/README.md
 .history/
-temp_results/
+temp_results/*
+!temp_results/README.md

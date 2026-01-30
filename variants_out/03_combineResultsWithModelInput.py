@@ -27,17 +27,17 @@ nohup /scratch/bauers/miniconda3/envs/ggnn-env/bin/python 03_combineResultsWithM
 '''
 
 # General imports
-import pandas as pd
-
-from pathlib import Path
 import os
 import json
+from pathlib import Path
+
+import pandas as pd
 
 # Load GGNN
 from ggnn.program_embedding.train import ProgramEmbeddingTool
 from ggnn.config import load_config
 
-config_path = Path("../environment/programEmbeddingConfig/model-config.yaml")
+config_path = Path(__file__).resolve().parents[1] / "environment" / "programEmbeddingConfig" / "model-config.yaml"
 
 config = load_config(config_path, None, eval_only=False)
 embedding_tool = ProgramEmbeddingTool(config)
@@ -46,7 +46,7 @@ embedding_tool = ProgramEmbeddingTool(config)
 
 import requests
 
-url = 'http://thor2.fim.uni-passau.de:5002/converter/ggnn'
+url = 'http://skadi.fim.uni-passau.de:5002/converter/ggnn'
 def embedded_kittens_call(content) -> str:
     r = requests.post(url, json=content)
 
@@ -71,7 +71,7 @@ def remove_processed_data(dir: str):
     #    os.remove(f)
 
 # Load Data
-df_data_file_name = "results.pickle"
+df_data_file_name = Path(__file__).resolve().parent / "results.pickle"
 df_data = pd.read_pickle(df_data_file_name)
 
 df_data.drop(columns=["project", "passing", "failing", "index"], inplace=True)
@@ -82,18 +82,18 @@ def process_variants_dir(variants_dir: str) -> pd.DataFrame:
     rows_list = []
     cnt = variants_dir.split('/')[-1]
 
-    df_out_name = f"games/fruit_catching/df_{cnt}.pickle"
+    df_out_name = Path(__file__).resolve().parent / "games" / "fruit_catching" / f"df_{cnt}.pickle"
     
     # Create output directory if it doesn't exist
-    os.makedirs(os.path.dirname(df_out_name), exist_ok=True)
+    os.makedirs(df_out_name.parent, exist_ok=True)
 
-    if os.path.exists(df_out_name):
+    if df_out_name.exists():
         print(f"File {df_out_name} already exists. Skipping processing.")
         return
 
-    # TODO: Adjust path to variants
-    #dir_in = os.path.join('../variants/', cnt)
-    dir_in = f"/scratch/bauers/variants/{cnt}"
+    # Use the repository-local variants directory instead of a cluster-specific path
+    variants_root = Path(__file__).resolve().parents[1] / "variants"
+    dir_in = variants_root / cnt
 
     print("Processing: ", cnt, variants_dir, len(os.listdir(dir_in)))
 
@@ -140,9 +140,7 @@ def process_variants_dir(variants_dir: str) -> pd.DataFrame:
     
     df.to_pickle(df_out_name)
 
-    
-
-file_dirs_in_folders = "games/FruitCatching.txt"
+    file_dirs_in_folders = Path(__file__).resolve().parent / "games" / "FruitCatching.txt"
 
 with open(file_dirs_in_folders) as file:
     lines = [line.rstrip() for line in file]

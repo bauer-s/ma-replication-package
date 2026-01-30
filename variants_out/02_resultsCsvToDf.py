@@ -1,4 +1,5 @@
 import pandas as pd
+from pathlib import Path
 
 
 file_name_df = "results.pickle"
@@ -31,12 +32,12 @@ DTYPES = {
 # Should lead to 62 iterations
 chunksize = 10 ** 6
 
-# TODO: Change rootdir to variants
-# rootdir = Path.cwd().parent / "variants"
-rootdir = '/scratch/bauers/variants'
-file_path = rootdir + "/results.csv"
+# Use the repository-local variants directory instead of a cluster-specific path
+rootdir = Path(__file__).resolve().parents[1] / "variants"
+file_path = rootdir / "results.csv"
 
-reader = pd.read_csv(file_path, usecols=DTYPES.keys(), dtype=DTYPES,chunksize=chunksize)
+print("Reading:", file_path)
+reader = pd.read_csv(file_path, usecols=DTYPES.keys(), dtype=DTYPES, chunksize=chunksize)
 
 
 
