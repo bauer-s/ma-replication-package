@@ -12,6 +12,7 @@ grid_search_results.csv
 *.log
 *.joblib
 *.pickle
+*.pkl
 *.out
 *.err
 .nfs*
@@ -26,3 +27,5 @@ surrogate-model-backend.tar
 *.pt
 environment/programEmbeddingConfig/*
 !environment/programEmbeddingConfig/README.md
+.history/
+temp_results/

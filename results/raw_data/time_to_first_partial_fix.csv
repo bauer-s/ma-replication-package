@@ -1,0 +1,6 @@
+config,mean_first_improvement_iter,median_first_improvement_iter,std_first_improvement_iter,min_first_improvement_iter,max_first_improvement_iter,num_runs_with_improvement,mean_time_to_first_improvement_sec,median_time_to_first_improvement_sec
+FI-00,7.51,1.0,15.61,1.0,79.0,76,961.09,165.29
+FI-50,14.26,1.0,44.4,1.0,351.0,70,639.48,84.84
+FI-70,25.62,1.0,69.7,1.0,435.0,72,780.86,56.29
+TO-50,13.83,1.0,25.57,1.0,115.0,72,1045.2,102.82
+TO-70,9.97,1.0,17.64,1.0,89.0,67,479.2,72.31

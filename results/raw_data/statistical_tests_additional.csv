@@ -1,0 +1,9 @@
+comparison,config1,config2,p_value_time_first_improvement,effect_size_time_first_improvement,median_time_first_imp_sec_1,median_time_first_imp_sec_2,mean_time_first_imp_sec_1,mean_time_first_imp_sec_2,p_value_generations,effect_size_generations,mean_generations_1,mean_generations_2,median_generations_1,median_generations_2
+Baseline vs FI-50%,FI-00,FI-50,0.449,-0.206,165.29,84.84,961.09,639.48,0.0,-1.1242,98.122,201.3659,84.5,158.5
+Baseline vs FI-70%,FI-00,FI-70,0.0533,-0.3631,165.29,56.29,961.09,780.86,0.0,-1.4074,98.122,279.061,84.5,224.5
+Baseline vs TO-50%,FI-00,TO-50,0.2421,-0.3002,165.29,102.82,961.09,1045.2,0.0,-1.3711,98.122,160.3293,84.5,145.5
+Baseline vs TO-70%,FI-00,TO-70,0.1032,-0.1481,165.29,72.31,961.09,479.2,0.0,-1.6418,98.122,187.3659,84.5,180.5
+FI-50% vs FI-70%,FI-50,FI-70,0.2828,-0.194,84.84,56.29,639.48,780.86,0.0094,-0.5063,201.3659,279.061,158.5,224.5
+TO-50% vs TO-70%,TO-50,TO-70,0.7643,0.1748,102.82,72.31,1045.2,479.2,0.0095,-0.4505,160.3293,187.3659,145.5,180.5
+FI vs TO (50%),FI-50,TO-50,0.6946,0.0117,84.84,102.82,639.48,1045.2,0.1366,0.4306,201.3659,160.3293,158.5,145.5
+FI vs TO (70%),FI-70,TO-70,0.7732,0.3031,56.29,72.31,780.86,479.2,0.0071,0.6821,279.061,187.3659,224.5,180.5

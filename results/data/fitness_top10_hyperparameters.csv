@@ -1,0 +1,11 @@
+Rank,Hidden Layers,Activation,Alpha,Learning Rate,Solver,CV R²
+1,"(128, 64)",tanh,0.0001,adaptive,sgd,0.6426
+2,"(128, 64)",tanh,1e-05,adaptive,sgd,0.6419
+3,"(128, 64)",tanh,0.001,adaptive,sgd,0.6418
+4,"(128, 64)",tanh,1e-05,constant,adam,0.6406
+5,"(128, 64)",tanh,1e-05,adaptive,adam,0.6406
+6,"(128, 64)",tanh,0.001,constant,adam,0.6392
+7,"(128, 64)",tanh,0.001,adaptive,adam,0.6392
+8,"(64, 128)",tanh,0.0001,constant,adam,0.6387
+9,"(64, 128)",tanh,0.0001,adaptive,adam,0.6387
+10,"(128, 64)",tanh,0.0001,constant,adam,0.6386

@@ -1,0 +1,6 @@
+config,successful_repairs,total_runs,success_rate,avg_tests_passed,median_tests_passed,std_tests_passed,avg_final_fitness,median_final_fitness,std_final_fitness
+FI-00,0,82,0.0,18.6098,19.0,5.0887,24.0322,24.9817,2.924
+FI-50,0,82,0.0,16.4634,18.0,6.4045,24.6461,25.1157,2.0492
+FI-70,0,82,0.0,16.1098,17.0,6.2559,24.8728,25.2818,1.9184
+TO-50,1,82,0.0122,18.0488,19.0,5.3122,23.962,24.8228,2.8834
+TO-70,0,82,0.0,17.1098,18.0,5.3817,23.8248,24.3695,2.7973

@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+	\centering
+	\caption{Top 10 Hyperparameter Configurations for Test Outcome Prediction Model}
+	\label{tab:testoutcome-top-configs}
+	\small
+	\begin{tabular}{cllccc}
+		\toprule
+		\textbf{Rank} & \textbf{Hidden Layers} & \textbf{Activation} & \textbf{Alpha} & \textbf{Learning Rate} & \textbf{CV F1 (Micro)} \\
+		\midrule
+		1 & (64, 128) & tanh & $1 \times 10^{-3}$ & constant & 0.7817 \\
+		2 & (64, 128) & tanh & $1 \times 10^{-3}$ & adaptive & 0.7817 \\
+		3 & (64, 128) & relu & $1 \times 10^{-3}$ & constant & 0.7815 \\
+		4 & (64, 128) & relu & $1 \times 10^{-3}$ & adaptive & 0.7815 \\
+		5 & (64, 128) & relu & $1 \times 10^{-4}$ & constant & 0.7801 \\
+		6 & (64, 128) & relu & $1 \times 10^{-4}$ & adaptive & 0.7801 \\
+		7 & (64, 128) & tanh & $1 \times 10^{-4}$ & constant & 0.7797 \\
+		8 & (64, 128) & tanh & $1 \times 10^{-4}$ & adaptive & 0.7797 \\
+		9 & (128, 64) & relu & $1 \times 10^{-3}$ & constant & 0.7784 \\
+		10 & (128, 64) & relu & $1 \times 10^{-3}$ & adaptive & 0.7784 \\
+		\bottomrule
+	\end{tabular}
+\end{table}

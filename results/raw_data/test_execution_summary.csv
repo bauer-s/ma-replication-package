@@ -1,0 +1,6 @@
+config,mean_test_executions,median_test_executions,std_test_executions,min_test_executions,max_test_executions,num_runs
+FI-00,4757.85,4104.0,1803.41,1968,10032,82
+FI-50,4819.22,3817.0,2789.44,984,16117,82
+FI-70,4026.84,3513.0,2370.9,595,10120,82
+TO-50,4006.49,3628.5,1291.7,1869,7176,82
+TO-70,2933.43,2804.5,1059.95,1201,5344,82

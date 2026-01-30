@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+	\centering
+	\caption{Top 10 Hyperparameter Configurations for Fitness Prediction Model}
+	\label{tab:fitness-top-configs}
+	\small
+	\begin{tabular}{cllcccc}
+		\toprule
+		\textbf{Rank} & \textbf{Hidden Layers} & \textbf{Activation} & \textbf{Alpha} & \textbf{Learning Rate} & \textbf{Solver} & \textbf{CV R²} \\
+		\midrule
+		1 & (128, 64) & tanh & $1 \times 10^{-4}$ & adaptive & sgd & 0.6426 \\
+		2 & (128, 64) & tanh & $1 \times 10^{-5}$ & adaptive & sgd & 0.6419 \\
+		3 & (128, 64) & tanh & $1 \times 10^{-3}$ & adaptive & sgd & 0.6418 \\
+		4 & (128, 64) & tanh & $1 \times 10^{-5}$ & constant & adam & 0.6406 \\
+		5 & (128, 64) & tanh & $1 \times 10^{-5}$ & adaptive & adam & 0.6406 \\
+		6 & (128, 64) & tanh & $1 \times 10^{-3}$ & constant & adam & 0.6392 \\
+		7 & (128, 64) & tanh & $1 \times 10^{-3}$ & adaptive & adam & 0.6392 \\
+		8 & (64, 128) & tanh & $1 \times 10^{-4}$ & constant & adam & 0.6387 \\
+		9 & (64, 128) & tanh & $1 \times 10^{-4}$ & adaptive & adam & 0.6387 \\
+		10 & (128, 64) & tanh & $1 \times 10^{-4}$ & constant & adam & 0.6386 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
