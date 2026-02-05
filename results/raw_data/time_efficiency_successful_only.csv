@@ -1,6 +1,6 @@
 config,mean_time_sec,median_time_sec,std_time_sec,min_time_sec,max_time_sec,num_runs,speedup_vs_baseline,time_saved_pct
 FI-00,,,,,,,,
-FI-50,,,,,,,,
+FI-50,5832.0,5832.0,,5832.0,5832.0,1.0,,
 FI-70,,,,,,,,
-TO-50,11380.0,11380.0,,11380.0,11380.0,1.0,,
+TO-50,,,,,,,,
 TO-70,,,,,,,,
